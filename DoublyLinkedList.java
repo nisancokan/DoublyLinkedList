@@ -1,7 +1,5 @@
 package project;
 
-
-//Inner Node class tanımlanıyor.
     class Node {
 
         public Student student;
@@ -20,7 +18,7 @@ package project;
         private Node head;
         private Node tail;
 
-        //Constructor oluşturuluyor.
+        
         public DoublyLinkedList() {
             this.head = null;
             this.tail = null;
@@ -28,17 +26,17 @@ package project;
         }
 
         public Node addStudent(Student student) {
-            //Eklenecek olan node nesnesi oluşturuluyor.
+           
 
             Node newNode = new Node(student);
 
-            //Eğer liste boş işe
+           
             if (this.head == null) {
-                //Head ve tail değişkenlerine atama yapılıyor.
+               
                 this.head = newNode;
                 this.tail = newNode;
 
-                //Yeni eklenen node nesnesinin değeri head den daha küçük ise
+               
             } else if (this.head.student.getStuNumber() > newNode.student.getStuNumber()) {
 
                 this.head.prev = newNode;
@@ -49,16 +47,16 @@ package project;
                     tail = tail.next;
                 }
 
-                //Yeni eklenen node nesnesinin değeri daha büyük ise
+                
             } else {
                 Node current = this.head;
-                //Karşılaştırma döngüsü
+           
                 while (current.next != null && current.next.student.getStuNumber() < newNode.student.getStuNumber()) {
 
                     current = current.next;
                 }
 
-                //Araya eklenen nesnenin next ve prev 'i ayarlanıyor.
+               
                 newNode.next = current.next;
                 current.next = newNode;
                 newNode.prev = current;
@@ -66,7 +64,7 @@ package project;
                 if (newNode.next != null) {
                     newNode.next.prev = newNode;
                 }
-                //Tail ataması yapılmadıysa
+              
                 Node toTail = this.head;
                 while (toTail.next != null) {
 
@@ -80,14 +78,13 @@ package project;
         }
 
         public void searchName(String nameSurname) {
-            //Linkedlistte arama yapmak için başından
+            
             Node current = this.head;
             if (this.head == null) {
-                System.out.println("Liste boş.");
+                System.out.println("List is empty.");
             }
             else {
                 while (current != null) {
-                    //Öğrenci ismi listede aranıyor
                     if (nameSurname.equals(current.student.getNameSurname())) {
                         System.out.println(current.student.toString());
 
@@ -98,19 +95,16 @@ package project;
             }
         }
         public void deleteStudent(int stuNumber) {
-            //Başka metot kullanılıyor
+            
             Node student = searchNumber(stuNumber);
 
-            //Liste boş ise veya öğrenci listede yok ise
             if (this.head == null || student == null) {
-                System.out.println("Öğrenci listede bulunamadı.");
+                System.out.println("Student is not found");
                 return;
             }
-
-            // Eğer head kısmında ise
             if (this.head == student) {
                 this.head = this.head.next;
-            } // Eğer head kısmında değil ise
+            } 
             if (this.tail == student) {
                 this.tail=this.tail.prev;
             }
@@ -122,19 +116,17 @@ package project;
             if (student.prev != null) {
                 student.prev.next = student.next;
             }
-            System.out.println("Öğrenci silme işlemi başarılı");
+            System.out.println("Student is successfully deleted.);
         }
         public void displayIncrease() {
-            //Linkedlist in başından başlamak için nesne oluşturuluyor
             Node current = this.head;
 
             if (this.head == null) {
-                System.out.println("Liste boş.");
+                System.out.println("List is empty.");
 
             } else {
                 System.out.println("DoublyLinked List ");
                 while (current != null) {
-                    //Öğrenci bilgileri yazdırılıyor
                     System.out.print(current.student + " ");
                     current = current.next;
 
@@ -143,15 +135,13 @@ package project;
         }
 
         public void displayDecrease() {
-            //Linkedlist in sonundan başlamak için nesne oluşturuluyor
             Node current = this.tail;
             if (this.tail == null) {
-                System.out.println("Liste boş");
+                System.out.println("List is empty.");
             }
             else {
                 System.out.println("DoublyLinkedList");
                 while (current !=null) {
-                    //Öğrenci bilgileri yazdırılıyor
                     System.out.println(current.student+" ");
                     current=current.prev;
                 }
@@ -159,14 +149,12 @@ package project;
         }
 
 
-        //Silme komutu için numaraya göre Student nesnesini bulan method
         private Node searchNumber(int stuNumber) {
             Node current = this.head;
             if (this.head == null) {
-                System.out.println("Liste boş.");
+                System.out.println("List is empty.");
             } else {
                 while (current != null) {
-                    //Öğrenci numarası listede aranıyor
                     if (current.student.getStuNumber() == stuNumber) {
                         return current;
                     }
